@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+    <!DOCTYPE mapper    
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+    <!-- 当使用该Mybatis与Spring整合的时候，该文件必须和相应的Mapper接口文件同名，并在同一路径下 -->
+  
+<mapper namespace="com.dtdx.lrpx.user.dao.mapper.UserMapper">
+	<resultMap type="com.dtdx.lrpx.user.domain.User" id="UserMap">
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="age" property="age" jdbcType="INTEGER"/>
+	</resultMap>   
+    <insert id="insertUser" parameterType="com.dtdx.lrpx.user.domain.User">   
+        insert into tb_lrpx_user (name,age) values(#{name},#{age})    
+        </insert>   
+    <select id="getUser" resultType="com.dtdx.lrpx.user.domain.User"  
+        parameterType="java.lang.String">   
+        select * from tb_lrpx_user where name=#{name}    
+       </select> 
+    <select id="queryUserList" resultMap="UserMap">
+    	select * from tb_lrpx_user
+    </select>        
+</mapper>  
